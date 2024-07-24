@@ -1,0 +1,60 @@
+
+form {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.hint-text {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666666;
+}
+
+.button-group {
+  display: flex;
+  vertical-align: baseline;
+  gap: 10px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #666666;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.buttonPrimary {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-primary:hover {
+  background-color: #0026ff;
+
+}
+
+button:hover {
+  background-color: #242424;
+}

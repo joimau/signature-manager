@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import MyForm from './form';
+import SignaturePreview from './signaturePreview';
 
-function App() {
+interface FormInputs {
+  fullName: string;
+  jobPosition: string;
+  emailAddress: string;
+  phoneNumber: string;
+  calendlyUrl: string;
+}
+
+const App: React.FC = () => {
+  const [inputs, setInputs] = useState<FormInputs>({
+    fullName: 'John Doe',
+    jobPosition: 'Project Manager',
+    emailAddress: 'johndoe@bndigital.co',
+    phoneNumber: '+19292351625',
+    calendlyUrl: '',
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <MyForm inputs={inputs} setInputs={setInputs} />
+      <SignaturePreview inputs={inputs} />
     </div>
   );
-}
+};
 
 export default App;
