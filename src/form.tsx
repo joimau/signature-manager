@@ -31,10 +31,10 @@ const MyForm: React.FC<MyFormProps> = ({ inputs, setInputs }) => {
 
   const handleReset = () => {
     setInputs({
-      fullName: 'John Doe',
-      jobPosition: 'Project Manager',
-      emailAddress: 'johndoe@bndigital.co',
-      phoneNumber: '+19292351625',
+      fullName: '',
+      jobPosition: '',
+      emailAddress: '',
+      phoneNumber: '',
       calendlyUrl: '',
     });
   };
@@ -49,6 +49,7 @@ const MyForm: React.FC<MyFormProps> = ({ inputs, setInputs }) => {
           name="fullName"
           value={inputs.fullName}
           onChange={handleChange}
+          placeholder="John Doe"
         />
       </div>
       <div>
@@ -59,6 +60,7 @@ const MyForm: React.FC<MyFormProps> = ({ inputs, setInputs }) => {
           name="jobPosition"
           value={inputs.jobPosition}
           onChange={handleChange}
+          placeholder="Project Manager"
         />
       </div>
       <div>
@@ -69,6 +71,7 @@ const MyForm: React.FC<MyFormProps> = ({ inputs, setInputs }) => {
           name="emailAddress"
           value={inputs.emailAddress}
           onChange={handleChange}
+          placeholder="johndoe@bndigital.co"
         />
       </div>
       <div>
@@ -79,6 +82,7 @@ const MyForm: React.FC<MyFormProps> = ({ inputs, setInputs }) => {
           name="phoneNumber"
           value={inputs.phoneNumber}
           onChange={handleChange}
+          placeholder="+19292351625"
         />
         <div className="hint-text">Enter your phone number in the format: +19292351625. Keep this default BN Digital phone number if you do not want to add your own.</div>
       </div>
@@ -90,12 +94,12 @@ const MyForm: React.FC<MyFormProps> = ({ inputs, setInputs }) => {
           name="calendlyUrl"
           value={inputs.calendlyUrl}
           onChange={handleChange}
+          placeholder="https://calendly.com/johndoe/30min"
         />
-                <div className="hint-text">Make sure that the link leads to the "Select a Date & Time", not just the Calendly page with meeting types.</div>
-
+        <div className="hint-text">Make sure that the link leads to the "Select a Date & Time", not just the Calendly page with meeting types.</div>
       </div>
       <div className="button-group">
-        <button type="button" onClick={handleReset}>Restore Defaults</button>
+        <button type="button" onClick={handleReset}>Clear Fields</button>
       </div>
     </form>
   );

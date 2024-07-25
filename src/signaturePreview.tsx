@@ -14,10 +14,11 @@ interface SignaturePreviewProps {
 }
 
 const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
+
   const signatureHtml = `
     <table cellpadding="0" cellspacing="0" style="max-width: 600px; width: 100%; border-collapse: collapse; border-spacing: 0;">
       <tr>
-        <td style="padding: 24px;">
+        <td style="padding-top: 24px;">
           <!-- Logo and Name/Position Section -->
           <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
             <tr>
@@ -64,7 +65,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
           <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="font-size:0;" align="left" valign="top" dir="ltr">
-                <div style="display:inline-block; vertical-align:top; width:100%; max-width: 276px;">
+                <div style="display:inline-block; vertical-align:top; width:100%; max-width: 300px;">
                   <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="width:100%;">
                     <tr>
                       <td align="left" valign="top" style="padding-right: 10px; padding-bottom: 8px;">
@@ -73,7 +74,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
                     </tr>
                   </table>
                 </div>
-                <div style="display:inline-block; vertical-align:top; width:100%; max-width: 276px;">
+                <div style="display:inline-block; vertical-align:top; width:100%; max-width: 300px;">
                   <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="width:100%;">
                     <tr>
                       <td align="left" valign="top" style="padding-right: 10px; padding-bottom: 8px;">
@@ -82,7 +83,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
                     </tr>
                   </table>
                 </div>
-                <div style="display:inline-block; vertical-align:top; width:100%; max-width: 276px;">
+                <div style="display:inline-block; vertical-align:top; width:100%; max-width: 300px;">
                   <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="width:100%;">
                     <tr>
                       <td align="left" valign="top" style="padding-bottom: 8px;">
@@ -91,7 +92,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
                     </tr>
                   </table>
                 </div>
-                <div style="display:inline-block; vertical-align:top; width:100%; max-width: 276px;">
+                <div style="display:inline-block; vertical-align:top; width:100%; max-width: 300px;">
                   <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="width:100%;">
                     <tr>
                       <td align="left" valign="top" style="padding-bottom: 8px;">
@@ -114,7 +115,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
           </table>
 
           <!-- Confidentiality Notice -->
-          <p style="max-width: 552px; width: 100%; margin: 0; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: 400; line-height: 20px; text-align: justify; color: #666666;">
+          <p style="max-width: 600px; width: 100%; margin: 0; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: 400; line-height: 20px; text-align: justify; color: #666666;">
             The content of this email is confidential and intended for the recipient specified in the message only. It is forbidden to share any part of this message with any third party, without a written consent of the sender.
           </p>
         </td>
@@ -122,29 +123,40 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
     </table>
   `;
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(signatureHtml)
-      .then(() => {
-        alert('The HTML is copied to the clipboard. Do not forget to check the guide on how to set up an HTML signature in your email client.');
-      })
-      .catch(err => {
-        console.error('Could not copy text: ', err);
-      });
+  const isFormValid = () => {
+    return inputs.fullName && inputs.jobPosition && inputs.emailAddress && inputs.phoneNumber && inputs.calendlyUrl;
   };
 
-  const handleViewGuide = () => {
-    // Assuming the guide is available at a certain URL
-    window.open('https://www.notion.so/bndigital/Installing-HTML-Signature-5296cb9d10974126935025017902bd51?pvs=4', '_blank');
+  const handleCopy = () => {
+    if (isFormValid()) {
+      navigator.clipboard.writeText(signatureHtml)
+        .then(() => {
+          alert('The HTML is copied to the clipboard. Do not forget to check the guide on how to set up an HTML signature in your email client.');
+        })
+        .catch(err => {
+          console.error('Could not copy text: ', err);
+        });
+    } else {
+      alert('Please fill in all fields before copying the signature.');
+    }
   };
 
   const handleDownload = () => {
-    const blob = new Blob([signatureHtml], { type: 'text/html' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'signature.html';
-    a.click();
-    URL.revokeObjectURL(url);
+    if (isFormValid()) {
+      const blob = new Blob([signatureHtml], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'signature.html';
+      a.click();
+      URL.revokeObjectURL(url);
+    } else {
+      alert('Please fill in all fields before downloading the signature.');
+    }
+  };
+
+  const handleViewGuide = () => {
+    window.open('https://www.notion.so/bndigital/Installing-HTML-Signature-5296cb9d10974126935025017902bd51?pvs=4', '_blank');
   };
 
   return (
@@ -154,7 +166,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
       </div>
       <div className={styles.buttonGroup}>
         <button className={styles.buttonPrimary} type="button" onClick={handleCopy}>Copy HTML Signature</button>
-        <button className={styles.button} type="button" onClick={handleViewGuide}>View Guide</button>
+        <button className={styles.button} type="button" onClick={handleViewGuide}>How to Install</button>
         <button className={styles.button} type="button" onClick={handleDownload}>Download HTML</button>
       </div>
       <div className={styles.version}>Signature version 1.0, July 24, 2024</div>
