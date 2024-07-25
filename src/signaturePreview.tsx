@@ -23,8 +23,8 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
           <table cellpadding="0" cellspacing="0" style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="width: 48px;">
-                <a aria-label="BN Digital Homepage" href="https://bndigital.co" title="BN Digital Homepage">
-                  <img alt="BN Digital Logo" src="https://cdn.bndigital.co/images/signature_logo2x.jpg" style="height: 42px; width: auto;">
+                <a aria-label="BN Digital Homepage" href="https://bndigital.co" title="BN Digital Homepage" style="background-color: transparent; text-decoration: none;">
+                            <img alt="BN Digital Logo" src="https://cdn.bndigital.co/images/signature_logo_gray_1x.png">
                 </a>
               </td>                    
               <td style="width: 24px;"></td>
@@ -136,8 +136,6 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
         .catch(err => {
           console.error('Could not copy text: ', err);
         });
-    } else {
-      alert('Please fill in all fields before copying the signature.');
     }
   };
 
@@ -150,8 +148,6 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
       a.download = 'signature.html';
       a.click();
       URL.revokeObjectURL(url);
-    } else {
-      alert('Please fill in all fields before downloading the signature.');
     }
   };
 
@@ -165,11 +161,29 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
         <div dangerouslySetInnerHTML={{ __html: signatureHtml }} />
       </div>
       <div className={styles.buttonGroup}>
-        <button className={styles.buttonPrimary} type="button" onClick={handleCopy}>Copy HTML Signature</button>
-        <button className={styles.button} type="button" onClick={handleViewGuide}>How to Install</button>
-        <button className={styles.button} type="button" onClick={handleDownload}>Download HTML</button>
+        <button
+          className={styles.buttonPrimary}
+          type="button"
+          onClick={handleCopy}
+          disabled={!isFormValid()}
+          title={!isFormValid() ? 'Please fill in all fields before copying the signature.' : ''}
+        >
+          Copy HTML Signature
+        </button>
+        <button className={styles.button} type="button" onClick={handleViewGuide}>
+          How to Install
+        </button>
+        <button
+          className={styles.button}
+          type="button"
+          onClick={handleDownload}
+          disabled={!isFormValid()}
+          title={!isFormValid() ? 'Please fill in all fields before downloading the signature.' : ''}
+        >
+          Download HTML
+        </button>
       </div>
-      <div className={styles.version}>Signature version 1.0, July 24, 2024</div>
+      <div className={styles.version}>Signature version 1.0, July 25, 2024</div>
     </div>
   );
 };

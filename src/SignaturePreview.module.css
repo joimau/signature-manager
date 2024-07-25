@@ -1,6 +1,8 @@
 .signatureContainer {
     font-family: Arial, sans-serif;
     max-width: 634px;
+    min-width: 480px;
+    padding: 24px;
     margin: auto;
   }
   
@@ -45,6 +47,18 @@
     background-color: #242424;
   }
   
+
+.button:disabled {
+  background-color: #d3d3d3;
+  color: #a9a9a9;
+  cursor: not-allowed;
+}
+
+.buttonPrimary:disabled {
+  background-color: #cccccc;
+  color: #999999;
+  cursor: not-allowed;
+}
   
   .version {
     margin-top: 16px;

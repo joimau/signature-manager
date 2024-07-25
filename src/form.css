@@ -1,6 +1,8 @@
 
 form {
   width: 320px;
+  min-width: 320px;
+  overflow-x: auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
