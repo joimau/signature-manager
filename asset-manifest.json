@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/signature-manager/static/css/main.5036bfc9.css",
-    "main.js": "/signature-manager/static/js/main.5620163b.js",
+    "main.js": "/signature-manager/static/js/main.2bf33651.js",
     "static/js/453.93d47dc7.chunk.js": "/signature-manager/static/js/453.93d47dc7.chunk.js",
     "index.html": "/signature-manager/index.html",
     "main.5036bfc9.css.map": "/signature-manager/static/css/main.5036bfc9.css.map",
-    "main.5620163b.js.map": "/signature-manager/static/js/main.5620163b.js.map",
+    "main.2bf33651.js.map": "/signature-manager/static/js/main.2bf33651.js.map",
     "453.93d47dc7.chunk.js.map": "/signature-manager/static/js/453.93d47dc7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5036bfc9.css",
-    "static/js/main.5620163b.js"
+    "static/js/main.2bf33651.js"
   ]
 }
