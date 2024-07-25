@@ -115,9 +115,7 @@ const SignaturePreview: React.FC<SignaturePreviewProps> = ({ inputs }) => {
           </table>
 
           <!-- Confidentiality Notice -->
-          <p style="max-width: 600px; width: 100%; margin: 0; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: 400; line-height: 20px; text-align: justify; color: #666666;">
-            The content of this email is confidential and intended for the recipient specified in the message only. It is forbidden to share any part of this message with any third party, without a written consent of the sender.
-          </p>
+          <p style="max-width: 600px; width: 100%; margin: 0; font-family: Verdana, Geneva, sans-serif; font-size: 12px; font-weight: 400; line-height: 20px; text-align: justify; color: #666666;">The content of this email is confidential and intended only for the recipient specified in the message. It is forbidden to share any part of this message with any third party without the written consent of the sender.</p>
         </td>
       </tr>
     </table>
